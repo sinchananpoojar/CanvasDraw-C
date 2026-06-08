@@ -65,7 +65,7 @@ printf("2. Line\n");
 printf("3. Triangle\n");
 printf("4. Circle\n");
 printf("5. All Shapes\n");
-
+printf("6. Exit\n");
 printf("Enter choice: ");
 scanf("%d", &choice);
 
@@ -92,6 +92,10 @@ switch(choice) {
         drawTriangle();
         drawCircle();
         break;
+
+    case 6:
+    printf("Exiting Program...\n");
+    return 0;
 
     default:
         printf("Invalid Choice\n");
