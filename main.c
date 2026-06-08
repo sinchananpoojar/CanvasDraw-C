@@ -60,6 +60,15 @@ void clearCanvas() {
         }
     }
 }
+void modifyRectangle() {
+    int i, j;
+
+    for(i = 5; i <= 8; i++) {
+        for(j = 10; j <= 16; j++) {
+            canvas[i][j] = '*';
+        }
+    }
+}
 int main() {
     int i, j;
     int choice;
@@ -75,7 +84,8 @@ printf("3. Triangle\n");
 printf("4. Circle\n");
 printf("5. All Shapes\n");
 printf("6. Delete All Shapes\n");
-printf("7. Exit\n");
+printf("7. Modify Rectangle\n");
+printf("8. Exit\n");
 printf("Enter choice: ");
 scanf("%d", &choice);
 
@@ -108,6 +118,12 @@ case 6:
     break;
 
 case 7:
+    clearCanvas();
+    modifyRectangle();
+    printf("Rectangle Modified\n");
+    break;
+
+case 8:
     printf("Exiting Program...\n");
     return 0;
     default:
