@@ -13,6 +13,34 @@ void drawRectangle() {
         }
     }
 }
+void drawLine() {
+    int i;
+
+    for(i = 2; i <= 8; i++) {
+        canvas[i][15] = '*';
+    }
+}
+
+void drawTriangle() {
+    canvas[2][17] = '*';
+
+    canvas[3][16] = '*';
+    canvas[3][18] = '*';
+
+    canvas[4][15] = '*';
+    canvas[4][16] = '*';
+    canvas[4][17] = '*';
+    canvas[4][18] = '*';
+    canvas[4][19] = '*';
+}
+
+void drawCircle() {
+    canvas[7][17] = '*';
+    canvas[6][16] = '*';
+    canvas[6][18] = '*';
+    canvas[8][16] = '*';
+    canvas[8][18] = '*';
+}
 int main() {
     int i, j;
 
@@ -22,6 +50,9 @@ int main() {
         }
     }
     drawRectangle();
+    drawLine();
+    drawTriangle();
+    drawCircle();
 
     for(i = 0; i < ROWS; i++) {
         for(j = 0; j < COLS; j++) {
