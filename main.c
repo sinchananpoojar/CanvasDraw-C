@@ -41,18 +41,8 @@ void drawCircle() {
     canvas[8][16] = '*';
     canvas[8][18] = '*';
 }
-int main() {
+void displayCanvas() {
     int i, j;
-
-    for(i = 0; i < ROWS; i++) {
-        for(j = 0; j < COLS; j++) {
-            canvas[i][j] = '_';
-        }
-    }
-    drawRectangle();
-    drawLine();
-    drawTriangle();
-    drawCircle();
 
     for(i = 0; i < ROWS; i++) {
         for(j = 0; j < COLS; j++) {
@@ -60,6 +50,53 @@ int main() {
         }
         printf("\n");
     }
+}
+int main() {
+    int i, j;
+    int choice;
 
+    for(i = 0; i < ROWS; i++) {
+        for(j = 0; j < COLS; j++) {
+            canvas[i][j] = '_';
+        }
+    }
+    printf("1. Rectangle\n");
+printf("2. Line\n");
+printf("3. Triangle\n");
+printf("4. Circle\n");
+printf("5. All Shapes\n");
+
+printf("Enter choice: ");
+scanf("%d", &choice);
+
+switch(choice) {
+    case 1:
+        drawRectangle();
+        break;
+
+    case 2:
+        drawLine();
+        break;
+
+    case 3:
+        drawTriangle();
+        break;
+
+    case 4:
+        drawCircle();
+        break;
+
+    case 5:
+        drawRectangle();
+        drawLine();
+        drawTriangle();
+        drawCircle();
+        break;
+
+    default:
+        printf("Invalid Choice\n");
+}
+
+ displayCanvas();
     return 0;
 }
