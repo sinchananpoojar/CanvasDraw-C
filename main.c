@@ -51,6 +51,15 @@ void displayCanvas() {
         printf("\n");
     }
 }
+void clearCanvas() {
+    int i, j;
+
+    for(i = 0; i < ROWS; i++) {
+        for(j = 0; j < COLS; j++) {
+            canvas[i][j] = '_';
+        }
+    }
+}
 int main() {
     int i, j;
     int choice;
@@ -65,7 +74,8 @@ printf("2. Line\n");
 printf("3. Triangle\n");
 printf("4. Circle\n");
 printf("5. All Shapes\n");
-printf("6. Exit\n");
+printf("6. Delete All Shapes\n");
+printf("7. Exit\n");
 printf("Enter choice: ");
 scanf("%d", &choice);
 
@@ -92,11 +102,14 @@ switch(choice) {
         drawTriangle();
         drawCircle();
         break;
+case 6:
+    clearCanvas();
+    printf("All Shapes Deleted\n");
+    break;
 
-    case 6:
+case 7:
     printf("Exiting Program...\n");
     return 0;
-
     default:
         printf("Invalid Choice\n");
 }
