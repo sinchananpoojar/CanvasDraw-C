@@ -1,0 +1,142 @@
+PROMPT 1
+User: Create a repository in GitHub. Submit the link to the GitHub repository in Moodle. Daily push to GitHub is mandatory. Design and implement a menu-driven 2D Graphics Editor in C using a 2D character array as the drawing canvas.
+
+Assistant:
+Sure. Here's a suggested approach:
+1. Create a new GitHub repository named "2D-Graphics-Editor".
+2. Clone the repository to your local machine.
+3. Create the project structure:
+   - main.c
+   - graphics_editor.c
+   - graphics_editor.h
+   - README.md
+4. Implement a menu-driven application in C.
+5. Use a 2D character array as the drawing canvas.
+6. Add features such as:
+   - Create canvas
+   - Draw point
+   - Draw line
+   - Draw rectangle
+   - Clear canvas
+   - Display canvas
+   - Exit
+7. Commit and push changes to GitHub daily.
+8. Submit the GitHub repository link through Moodle.
+
+--------------------------------------------------
+
+PROMPT 2
+User: Explain the project step by step.
+
+Assistant:
+Step 1: Create the Canvas
+- Define a 2D character array.
+- Initialize every position with a blank character.
+
+Step 2: Create the Menu
+- Display options repeatedly using a loop.
+- Read the user's choice and call the corresponding function.
+
+Step 3: Draw Basic Shapes
+- Point: Place a character at specific coordinates.
+- Line: Use simple horizontal and vertical line logic.
+- Rectangle: Draw four sides using characters.
+
+Step 4: Display the Canvas
+- Print the 2D array row by row.
+
+Step 5: Clear the Canvas
+- Reset all positions to blank spaces.
+
+Step 6: Test the Program
+- Verify all menu options.
+- Check boundary conditions.
+
+Step 7: GitHub Workflow
+- Commit after each completed feature.
+- Push changes daily.
+- Update README with screenshots and project details.
+
+--------------------------------------------------
+
+PROMPT 3
+User: How do I install GCC and run the project in VS Code?
+
+Assistant:
+1. Install GCC:
+   - Download MinGW-w64.
+   - Install GCC and add it to the system PATH.
+   - Verify installation using:
+     gcc --version
+
+2. Install VS Code:
+   - Download and install Visual Studio Code.
+   - Install the C/C++ extension.
+
+3. Open the Project:
+   - Open the project folder in VS Code.
+
+4. Compile the Program:
+   gcc main.c graphics_editor.c -o editor
+
+5. Run the Program:
+   editor.exe
+
+6. Debugging:
+   - Use the VS Code Run and Debug feature.
+   - Set breakpoints where needed.
+
+--------------------------------------------------
+
+PROMPT 4
+User: How do I connect GitHub and VS Code?
+
+Assistant:
+Method 1: Clone Repository
+1. Copy the GitHub repository URL.
+2. Open VS Code.
+3. Press Ctrl+Shift+P.
+4. Select "Git: Clone".
+5. Paste the repository URL.
+6. Choose a local folder.
+
+Method 2: Push Changes
+1. Open Source Control in VS Code.
+2. Stage modified files.
+3. Enter a commit message.
+4. Commit changes.
+5. Click "Sync Changes" or run:
+   git push origin main
+
+Useful Commands:
+git status
+git add .
+git commit -m "Updated graphics editor"
+git push origin main
+
+--------------------------------------------------
+
+PROMPT 5
+User: How do I change the Git author name to my own account?
+
+Assistant:
+To update Git author information globally:
+
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+
+To verify:
+
+git config --global --list
+
+For a specific repository only:
+
+git config user.name "Your Name"
+git config user.email "your_email@example.com"
+
+To update the author information for future commits:
+1. Configure the correct username and email.
+2. Make a new commit.
+3. Push the changes to GitHub.
+
+This ensures commits are linked to your own GitHub account.
