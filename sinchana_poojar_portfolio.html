@@ -1,0 +1,276 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--color-background-tertiary);color:var(--color-text-primary)}
+.hero{background:linear-gradient(135deg,#1A355E 0%,#0F6E56 100%);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.05)}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-40px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.avatar{width:90px;height:90px;border-radius:50%;background:#008B8B;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:500;color:#fff;margin:0 auto 1.25rem;border:3px solid rgba(255,255,255,0.25);position:relative;z-index:1}
+.hero h1{font-size:26px;font-weight:500;color:#fff;margin-bottom:6px;position:relative;z-index:1}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:1.5rem;position:relative;z-index:1}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.badge{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid rgba(255,255,255,0.2)}
+.nav{display:flex;gap:0;overflow-x:auto;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{flex:1;min-width:80px;padding:12px 8px;border:none;background:transparent;font-size:12px;font-weight:500;color:var(--color-text-secondary);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.nav-btn.active{color:#008B8B;border-bottom-color:#008B8B}
+.nav-btn:hover:not(.active){color:var(--color-text-primary);background:var(--color-background-secondary)}
+.content{padding:1.5rem 1.25rem;max-width:680px}
+.section{display:none}
+.section.active{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:12px}
+.card-title{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.card-sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:8px}
+.card-body{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
+.tag-teal{background:#E1F5EE;color:#0F6E56}
+.tag-navy{background:#E6F1FB;color:#185FA5}
+.tag-amber{background:#FAEEDA;color:#854F0B}
+.year-badge{float:right;font-size:11px;color:#008B8B;font-weight:500;background:#E1F5EE;padding:2px 8px;border-radius:10px;margin-top:2px}
+.section-label{font-size:11px;font-weight:500;color:#008B8B;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:0.5px;background:var(--color-border-tertiary)}
+.skill-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.skill-name{font-size:13px;font-weight:500;color:var(--color-text-primary);min-width:110px}
+.skill-bar-bg{flex:1;height:6px;border-radius:3px;background:var(--color-background-secondary)}
+.skill-bar{height:6px;border-radius:3px;background:#008B8B;transition:width 1s ease}
+.skill-pct{font-size:11px;color:var(--color-text-secondary);min-width:32px;text-align:right}
+.hobby-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.hobby-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:14px 12px;text-align:center}
+.hobby-icon{font-size:24px;margin-bottom:6px;color:#1A355E}
+.hobby-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.hobby-desc{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.timeline-item{display:flex;gap:14px;margin-bottom:16px}
+.tl-dot-col{display:flex;flex-direction:column;align-items:center;padding-top:3px}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:#008B8B;flex-shrink:0}
+.tl-line{flex:1;width:1px;background:var(--color-border-tertiary);margin-top:4px}
+.tl-body{flex:1;padding-bottom:8px}
+.tl-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.tl-place{font-size:12px;color:#008B8B;margin:2px 0}
+.tl-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1.25rem}
+.stat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:14px 10px;text-align:center}
+.stat-num{font-size:22px;font-weight:500;color:#1A355E}
+.stat-lbl{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.project-lang{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#008B8B;font-weight:500}
+.bullet-list{list-style:none;padding:0}
+.bullet-list li{font-size:12px;color:var(--color-text-secondary);padding:3px 0 3px 14px;position:relative;line-height:1.5}
+.bullet-list li::before{content:'▸';position:absolute;left:0;color:#008B8B;font-size:10px;top:4px}
+.obj-box{background:var(--color-background-secondary);border-left:3px solid #008B8B;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:1rem 1.25rem;font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:12px}
+.lang-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 12px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-primary);margin:4px;font-weight:500}
+.lang-dot{width:7px;height:7px;border-radius:50%;background:#008B8B}
+</style>
+
+<div class="hero">
+  <div class="avatar">SNP</div>
+  <h1>Sinchana N Poojar</h1>
+  <p class="hero-sub">Computer Science & Engineering &nbsp;·&nbsp; REVA University &nbsp;·&nbsp; Bengaluru</p>
+  <div class="badges">
+    <span class="badge"><i class="ti ti-code" aria-hidden="true"></i> C &nbsp;·&nbsp; Python &nbsp;·&nbsp; HTML</span>
+    <span class="badge"><i class="ti ti-calendar" aria-hidden="true"></i> 1st Year, 2024–Present</span>
+    <span class="badge"><i class="ti ti-map-pin" aria-hidden="true"></i> Karnataka, India</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="show('about',this)"><i class="ti ti-user" aria-hidden="true"></i> About</button>
+  <button class="nav-btn" onclick="show('education',this)"><i class="ti ti-school" aria-hidden="true"></i> Education</button>
+  <button class="nav-btn" onclick="show('skills',this)"><i class="ti ti-code" aria-hidden="true"></i> Skills</button>
+  <button class="nav-btn" onclick="show('projects',this)"><i class="ti ti-bulb" aria-hidden="true"></i> Projects</button>
+  <button class="nav-btn" onclick="show('more',this)"><i class="ti ti-star" aria-hidden="true"></i> More</button>
+</nav>
+
+<div class="content">
+
+  <div id="about" class="section active">
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-num">18</div><div class="stat-lbl">Years old</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Tech skills</div></div>
+      <div class="stat"><div class="stat-num">1st</div><div class="stat-lbl">Year CSE</div></div>
+    </div>
+    <div class="section-label">About me</div>
+    <div class="obj-box">
+      An enthusiastic 18-year-old CSE student at REVA University with a passion for coding and technology. Eager to learn, build, and contribute to the tech world — one line of code at a time.
+    </div>
+    <div class="section-label" style="margin-top:1.25rem">Career objective</div>
+    <div class="obj-box">
+      To leverage my growing technical skills in C, Python, and HTML while pursuing my B.E. in Computer Science. I aim to build a strong foundation in software development, contribute meaningfully to collaborative projects, and eventually work at the intersection of technology and innovation.
+    </div>
+    <div class="section-label" style="margin-top:1.25rem">Languages known</div>
+    <div>
+      <span class="lang-pill"><span class="lang-dot"></span>English</span>
+      <span class="lang-pill"><span class="lang-dot"></span>Kannada</span>
+      <span class="lang-pill"><span class="lang-dot"></span>Hindi</span>
+    </div>
+  </div>
+
+  <div id="education" class="section">
+    <div class="section-label">Academic journey</div>
+    <div class="timeline-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <div class="tl-title">B.E. – Computer Science & Engineering <span class="year-badge">2024–Present</span></div>
+        <div class="tl-place">REVA University, Bengaluru</div>
+        <div class="tl-desc">Currently in 1st year (Sem 1 & 2). Coursework includes C Programming, Problem Solving, Engineering Mathematics, and Digital Logic.</div>
+        <div class="tag-row"><span class="tag tag-teal">C Programming</span><span class="tag tag-teal">Mathematics</span><span class="tag tag-teal">Digital Logic</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <div class="tl-title">Pre-University Course (PUC) <span class="year-badge">2022–2024</span></div>
+        <div class="tl-place">Jindal Pre-University College</div>
+        <div class="tl-desc">Completed Science stream with consistent academic performance in board examinations.</div>
+        <div class="tag-row"><span class="tag tag-navy">Science Stream</span><span class="tag tag-navy">Board Exams</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <div class="tl-title">Secondary School – SSLC <span class="year-badge">Until 2022</span></div>
+        <div class="tl-place">Jindal Public School</div>
+        <div class="tl-desc">Built a strong foundation in Mathematics, Science, and English. Active participant in extracurricular activities.</div>
+        <div class="tag-row"><span class="tag tag-amber">Mathematics</span><span class="tag tag-amber">Science</span><span class="tag tag-amber">Extracurriculars</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="skills" class="section">
+    <div class="section-label">Technical skills</div>
+    <div id="bars"></div>
+    <div class="section-label" style="margin-top:1.25rem">Soft skills</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="card" style="padding:10px 12px;margin-bottom:0"><span style="font-size:12px;color:var(--color-text-secondary)"><i class="ti ti-bolt" style="color:#008B8B;margin-right:5px" aria-hidden="true"></i>Quick Learner</span></div>
+      <div class="card" style="padding:10px 12px;margin-bottom:0"><span style="font-size:12px;color:var(--color-text-secondary)"><i class="ti ti-users" style="color:#008B8B;margin-right:5px" aria-hidden="true"></i>Team Player</span></div>
+      <div class="card" style="padding:10px 12px;margin-bottom:0"><span style="font-size:12px;color:var(--color-text-secondary)"><i class="ti ti-brain" style="color:#008B8B;margin-right:5px" aria-hidden="true"></i>Creative Thinker</span></div>
+      <div class="card" style="padding:10px 12px;margin-bottom:0"><span style="font-size:12px;color:var(--color-text-secondary)"><i class="ti ti-clock" style="color:#008B8B;margin-right:5px" aria-hidden="true"></i>Time Management</span></div>
+      <div class="card" style="padding:10px 12px;margin-bottom:0"><span style="font-size:12px;color:var(--color-text-secondary)"><i class="ti ti-refresh" style="color:#008B8B;margin-right:5px" aria-hidden="true"></i>Adaptability</span></div>
+      <div class="card" style="padding:10px 12px;margin-bottom:0"><span style="font-size:12px;color:var(--color-text-secondary)"><i class="ti ti-eye" style="color:#008B8B;margin-right:5px" aria-hidden="true"></i>Attention to Detail</span></div>
+    </div>
+  </div>
+
+  <div id="projects" class="section">
+    <div class="section-label">Academic projects</div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div class="card-title">Student Grade Calculator</div>
+        <span class="project-lang"><i class="ti ti-code" aria-hidden="true"></i>C</span>
+      </div>
+      <div class="card-body">Console-based application that computes student grades from multiple subject scores, with input validation, average calculation, and grade classification.</div>
+      <ul class="bullet-list" style="margin-top:8px">
+        <li>Input validation & error handling</li>
+        <li>Average computation and grade mapping</li>
+        <li>Implemented using arrays, loops, and functions</li>
+      </ul>
+      <div class="tag-row"><span class="tag tag-teal">C Programming</span><span class="tag tag-amber">Logic Building</span></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div class="card-title">Personal Portfolio Website</div>
+        <span class="project-lang"><i class="ti ti-brand-html5" aria-hidden="true"></i>HTML</span>
+      </div>
+      <div class="card-body">A static personal portfolio showcasing skills, hobbies, and background using semantic HTML5 tags and CSS styling.</div>
+      <ul class="bullet-list" style="margin-top:8px">
+        <li>Semantic HTML5 structure</li>
+        <li>Responsive CSS layout</li>
+        <li>Clean and accessible design</li>
+      </ul>
+      <div class="tag-row"><span class="tag tag-teal">HTML</span><span class="tag tag-teal">CSS</span><span class="tag tag-amber">Web Design</span></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div class="card-title">Number Pattern Programs</div>
+        <span class="project-lang"><i class="ti ti-brand-python" aria-hidden="true"></i>Python</span>
+      </div>
+      <div class="card-body">Self-learning mini-projects using Python to build logic through pattern printing, list manipulation, and string exercises.</div>
+      <ul class="bullet-list" style="margin-top:8px">
+        <li>Nested loops and conditionals</li>
+        <li>List and string manipulation</li>
+        <li>Problem-solving mindset</li>
+      </ul>
+      <div class="tag-row"><span class="tag tag-navy">Python</span><span class="tag tag-amber">Self-Learning</span></div>
+    </div>
+  </div>
+
+  <div id="more" class="section">
+    <div class="section-label">Hobbies & interests</div>
+    <div class="hobby-grid">
+      <div class="hobby-card">
+        <div class="hobby-icon"><i class="ti ti-brand-netbeans" aria-hidden="true"></i></div>
+        <div class="hobby-name">Badminton</div>
+        <div class="hobby-desc">Active player · inter-school tournaments</div>
+      </div>
+      <div class="hobby-card">
+        <div class="hobby-icon"><i class="ti ti-music" aria-hidden="true"></i></div>
+        <div class="hobby-name">Music</div>
+        <div class="hobby-desc">Diverse genres · fuels creativity</div>
+      </div>
+      <div class="hobby-card">
+        <div class="hobby-icon"><i class="ti ti-device-laptop" aria-hidden="true"></i></div>
+        <div class="hobby-name">Tech Exploration</div>
+        <div class="hobby-desc">New tools · coding platforms</div>
+      </div>
+      <div class="hobby-card">
+        <div class="hobby-icon"><i class="ti ti-puzzle" aria-hidden="true"></i></div>
+        <div class="hobby-name">Problem Solving</div>
+        <div class="hobby-desc">Puzzles · logic challenges</div>
+      </div>
+    </div>
+    <div class="section-label" style="margin-top:1.25rem">Achievements</div>
+    <div class="card">
+      <ul class="bullet-list">
+        <li>Participated in inter-school badminton tournaments</li>
+        <li>Completed online introductory Python programming course</li>
+        <li>Practises coding challenges on HackerRank and GeeksforGeeks</li>
+        <li>Attended college-level technical seminars and workshops in 1st year</li>
+        <li>Consistently exploring new technologies beyond the curriculum</li>
+      </ul>
+    </div>
+    <div class="section-label" style="margin-top:1rem">Declaration</div>
+    <div class="obj-box" style="font-size:12px">
+      I hereby declare that all the information provided is true and correct to the best of my knowledge and belief.<br><br>
+      <strong style="font-size:13px;color:var(--color-text-primary)">Sinchana N Poojar</strong><br>
+      <span style="font-size:11px;color:var(--color-text-secondary)">June 2026 · Bengaluru, Karnataka</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='skills') animateBars();
+}
+
+const skills=[
+  {name:'C Programming',pct:72},
+  {name:'Python',pct:58},
+  {name:'HTML / CSS',pct:62},
+  {name:'Problem Solving',pct:75},
+  {name:'Logic Building',pct:70},
+];
+
+let animated=false;
+function animateBars(){
+  if(animated)return;
+  animated=true;
+  const container=document.getElementById('bars');
+  container.innerHTML='';
+  skills.forEach(s=>{
+    const row=document.createElement('div');
+    row.className='skill-row';
+    row.innerHTML=`<span class="skill-name">${s.name}</span><div class="skill-bar-bg"><div class="skill-bar" id="bar-${s.name.replace(/\s/g,'')}" style="width:0%"></div></div><span class="skill-pct">${s.pct}%</span>`;
+    container.appendChild(row);
+  });
+  setTimeout(()=>{
+    skills.forEach(s=>{
+      const bar=document.getElementById('bar-'+s.name.replace(/\s/g,''));
+      if(bar)bar.style.width=s.pct+'%';
+    });
+  },100);
+}
+animateBars();
+</script>
